@@ -1,0 +1,10 @@
+Script started on 2021-09-03 07:46:31+00:00
+bash-4.4$ 
+bash-4.4$ touch ex5.txt
+bash-4.4$ chmod a-x ex5.txt
+bash-4.4$ chmod uo+rwx a[Kex5.txt
+bash-4.4$ chmod g=u ex5.txt
+bash-4.4$ histio[K[Kory > ex5.txt
+bash-4.4$ exit
+
+Script done on 2021-09-03 07:47:28+00:00
