@@ -1,0 +1,18 @@
+Script started on 2021-09-03 04:29:19+00:00
+bash-4.4$ mkdir -p abc xyz
+bash-4.4$ touch abc/file.txt
+bash-4.4$ link abc/file.txt xyz/file.txt
+bash-4.4$ echo e[Khello > abc/file.txt 
+bash-4.4$ a[Kcat xyz/file.txt 
+hello
+bash-4.4$ ls -i abc/file.txt 
+50337314 abc/file.txt
+bash-4.4$ find . -inum 50337314
+./abc/file.txt
+./xyz/file.txt
+bash-4.4$ find . -inum 50337314 -exec rm {} \;
+bash-4.4$ ls abc
+bash-4.4$ history > ex4.txt
+bash-4.4$ exit
+
+Script done on 2021-09-03 04:31:10+00:00

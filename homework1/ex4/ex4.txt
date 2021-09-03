@@ -1,0 +1,10 @@
+    1  mkdir -p abc xyz
+    2  touch abc/file.txt
+    3  link abc/file.txt xyz/file.txt
+    4  echo hello > abc/file.txt 
+    5  cat xyz/file.txt 
+    6  ls -i abc/file.txt 
+    7  find . -inum 50337314
+    8  find . -inum 50337314 -exec rm {} \;
+    9  ls abc
+   10  history > ex4.txt
