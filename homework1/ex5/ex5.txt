@@ -1,79 +1,8 @@
-    1  mkdir abc
-    2  touch file.tx
-    3  rm file.tx 
-    4  touch file.txt
-    5  link file.txt abc/
-    6  link file.txt abc/file.txt
-    7  ls -la abc/
-    8  mkdir abc
-    9  touch abc/file.txt
-   10  mkdir xyz
-   11  link abc/file.txt xyz/file.txt
-   12  echo hello >> abc/file.txt 
-   13  cat xyz/file.txt 
-   14  ls -i abc/file.txt 
-   15  find . -inum 50337310
-   16  find . -inum 50337310 -delete
-   17  ls abc/
-   18  history > ex4.txt
-   19  mkdir -p abc xyz
-   20  touch abc/file.txt
-   21  link abc/file.txt xyz/file.txt
-   22  echo hello > abc/file.txt 
-   23  cat xyz/file.txt 
-   24  ls -i abc/file.txt 
-   25  find . -inum 50337314
-   26  find . -inum 50337314 -exec rm {} \;
-   27  ls abc
-   28  history > ex4.txt
-   29  ps axuf
-   30  w
-   31  ip a
-   32  cat /proc/cpuinfo 
-   33  free
-   34  script
-   35  less typescript 
-   36  rm typescript 
-   37  rm -rf file.txt abc/
-   38  script
-   39  cat ex4.txt 
-   40  man script
-   41  scriptreplay -s typescript 
-   42  man scriptreplay
-   43  man script
-   44  script -tex4.timing ex4.script
-   45  vi ex4.txt
-   46  man scriptreplay 
-   47  scriptreplay ex4.timing 
-   48  scriptreplay ex4.timing ex4.script 
-   49  mkdir .ssh
-   50  chmod 700 .ssh/
-   51  vi .ssh/authorized_keys
-   52  chmod 600 .ssh/authorized_keys 
-   53  ls
-   54  mkdir hw1
-   55  mkdir hw1/ex4
-   56  mv ex4.* hw1/ex4/
-   57  rmdir abc xyz
-   58  ls -la
-   59  w
-   60  ./fork 3
-   61  pstree
-   62  fg
-   63  bg
-   64  pstree
-   65  rm fork 
-   66  uname -a
-   67  ip a
-   68  ls
-   69  mkdir ex5
-   70  cd ex5
-   71  script -t ex5.timing ex5.script
-   72  touch ex5.txt
-   73  chmod a-x ex5.txt
-   74  chmod ua+rwx ex5.txt
-   75  touch ex5.txt
-   76  chmod a-x ex5.txt
-   77  chmod uo+rwx ex5.txt
-   78  chmod g=u ex5.txt
-   79  history > ex5.txt
+    1  touch ex5.txt
+    2  chmod a-x ex5.txt
+    3  chmod ua+rwx ex5.txt
+    4  touch ex5.txt
+    5  chmod a-x ex5.txt
+    6  chmod uo+rwx ex5.txt
+    7  chmod g=u ex5.txt
+    8  history > ex5.txt
