@@ -8,7 +8,7 @@
 
 Дополнительно записана сессия консоли командой
 ```shell
-script -t ex4.timing ex4.script
+script -tex4.timing ex4.script
 
 ```
 
