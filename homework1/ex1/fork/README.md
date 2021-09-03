@@ -3,12 +3,12 @@
 
 ## Сборка
 ```
-cargo build --target=release
+cargo build --release
 ```
 
 ## Запуск в цикле 3 раза
 ```shell
-./fork 3
+./target/release/fork 3
 ```
 
 ### Результат
@@ -36,7 +36,7 @@ cargo build --target=release
 
 ## Запуск в цикле 5 раз
 ```shell
-./fork 5
+./target/release/fork 5
 ```
 ### Результат
 ```shell
