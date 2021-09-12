@@ -110,3 +110,54 @@ Innopolis Data Science
 ## 7. Перепишите код функции ./app/views.py таким образом, чтобы функция могла принять POST или GET запрос  и принимая на вход текстовую переменную name и возвращала Hello <name> ( return ‘Hello {}’.format(name))
 
 Данное упражнение потребует доработать Dockerfile, чтобы он запускал наше приложение, а также файл views.py, чтобы наш обработчик запроса мог принимать параметры.
+
+[Обновленное приложение с исправленным Dockerfile](https://github.com/maximmoroz/innopolis-datascience/tree/master/homework2/ex7/docker_flask)
+
+### Dockerfile
+```dockerfile
+FROM tiangolo/uwsgi-nginx-flask:python3.6-alpine3.7
+ENV STATIC_URL /static
+ENV STATIC_PATH /app/app/static/
+COPY ./app /app
+RUN pip install -r /app/requirements.txt
+```
+
+### Обработчик запросов
+```python
+@app.route('/', methods=['POST', 'GET'])
+def home():
+    default_name = 'world'
+    if request.method == 'POST':
+        name = request.form.get('name', default_name)
+    else:
+        name = request.args.get('name', default_name)
+    return "hello {}!".format(name)
+```
+
+### Сборка и запуск контейнера
+```shell
+$ docker build -t docker_flask:2.0 .
+$ docker run -d -з 8000:80 docker_flask:2.0
+a4452cfd0b120bb8d03675086e8da63d1445ead73535a39cc27eda51cd75e850
+```
+
+### Отправка запросов к приложению
+Проверим значение по-умолчанию
+
+```shell
+$ curl http://127.0.0.1:8000/
+hello world!
+```
+
+Проверим GET запрос
+```shell
+$ curl http://127.0.0.1:8000/?name=Innopolis
+hello Innopolis!
+```
+
+Проверим POST запрос
+```shell
+$ curl -X POST -F name=Innopolis http://127.0.0.1:8000/
+hello Innopolis!
+```
+
