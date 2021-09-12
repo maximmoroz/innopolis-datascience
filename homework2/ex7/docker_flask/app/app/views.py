@@ -2,7 +2,10 @@ from flask import request
 from app import app
 
 
-@app.route('/')
+@app.route('/', methods=['POST', 'GET'])
 def home():
-    name = request.args.get('name', 'world')
+    if request.method == 'POST':
+        name = request.form.get('name', 'world')
+    else:
+        name = request.args.get('name', 'world')
     return "hello {}!".format(name)
