@@ -17,7 +17,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpeg'}
 
 # Загрузка модели
 def predict_model(x):
-    return [1 if (i[1] / i[2]) > (i[3] / i[4]) - (i[5] ** 2) + (i[6] ** 2) else 0 for i in x]
+    return np.power(x, 2) + 1/x - np.log(x) * 1/(2*np.power(x, 3))
 
 
 def allowed_file(filename):
@@ -77,7 +77,7 @@ def predict():
         return flask.jsonify(data)
 
     # Записываем значение prediction в data["prediction"]
-    data["prediction"] = predict_model(x)
+    data["prediction"] = list(predict_model(x[0]))
     # Записываем статус в data["success"]
     data["success"] = True
 
