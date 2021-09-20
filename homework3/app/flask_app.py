@@ -1,6 +1,6 @@
 # Загружаем билиотеки
 import flask
-from flask import Flask, flash, request, redirect, url_for, send_from_directory
+from flask import Flask, Response, flash, request, redirect, url_for, send_from_directory
 import pandas as pd
 import requests
 import json
@@ -11,8 +11,8 @@ from werkzeug.utils import secure_filename
 # Задаем имя серверу
 app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = False
-app.config['UPLOAD_FOLDER'] = '/content/'
-ALLOWED_EXTENSIONS = {'png', 'jpeg'}
+app.config['UPLOAD_FOLDER'] = '/tmp/'
+ALLOWED_EXTENSIONS = {'png', 'jpeg', 'csv'}
 
 
 # Загрузка модели
@@ -20,9 +20,13 @@ def predict_model(x):
     return np.power(x, 2) + 1/x - np.log(x) * 1/(2*np.power(x, 3))
 
 
+def get_file_extension(filename: str) -> str:
+    return filename.rsplit('.', 1)[1].lower()
+
+
 def allowed_file(filename):
     return '.' in filename and \
-           filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+           get_file_extension(filename) in ALLOWED_EXTENSIONS
 
 
 @app.route('/uploads/<name>')
@@ -46,6 +50,9 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            if get_file_extension(file.filename) == 'csv':
+                df = pd.read_csv(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                return Response(df.head(2).to_string(), mimetype='text/plain')
             return redirect(url_for('download_file', name=filename))
     return '''
     <!doctype html>
